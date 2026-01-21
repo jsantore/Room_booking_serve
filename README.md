@@ -6,12 +6,13 @@ The Meeting Room Booking System that allows users to book meeting rooms, view av
 ## Features
 
 ### 1. Members Login
-- Endpoint: `/api/v1/login/`
+- Endpoint: `api/v1/member/login/`
 - Method: POST
-- Members can log in using their email and password. Self-registration is    not permitted; members are created exclusively through Django admin, and only they can access the login functionality.
+- Members can log in using their email and password. (send json with keys "email" and "password")
+- Self-registration is    not permitted; members are created exclusively through Django admin, and only they can access the login functionality.
 
 ### 2. List Available Meeting Rooms
-- Endpoint: `/api/v1/meeting-rooms/`
+- Endpoint: `/api/v1/meeting-rooms/available/`
 - Method: GET
 - login required
 - Lists all available meeting rooms based on the specified time range.
