@@ -19,6 +19,8 @@ class MeetingRoomListView(generics.ListCreateAPIView):
     """
     API View to list available meeting rooms during a specific time range.
     """
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
     serializer_class = MeetingRoomSerializer
 
     def get_queryset(self):
@@ -26,7 +28,11 @@ class MeetingRoomListView(generics.ListCreateAPIView):
         end_time = self.request.query_params.get('end_time', None)
 
         # Check if start_time and end_time are provided in the request
-        if start_time or end_time:
+        if start_time and end_time:
+            from django.utils.dateparse import parse_datetime
+            if not parse_datetime(start_time) or not parse_datetime(end_time):
+                return MeetingRoom.objects.none()
+
             # Filter meeting rooms based on availability during the specified time range
             queryset = MeetingRoom.objects.filter(
                 Q(booking_histories__end_time__lte=start_time) | Q(booking_histories__start_time__gte=end_time) | Q(booking_histories__isnull=True),
@@ -80,7 +86,6 @@ class MeetingRoomBookingView(generics.CreateAPIView):
 
         # Use ISO 8601 format when saving to serializer
         serializer = self.get_serializer(data={
-            "meeting_room": meeting_room.id,
             "start_time": start_time.isoformat(),
             "end_time": end_time.isoformat(),
             "no_of_persons": no_of_persons,

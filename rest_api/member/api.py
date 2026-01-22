@@ -17,7 +17,6 @@ class UserLoginView(APIView):
         # Validate email
         if not is_valid_email(email):
             return Response({"error": "Invalid email!"}, status=status.HTTP_400_BAD_REQUEST)
-
         user = authenticate(request, email=email, password=password)
 
         if user is not None:

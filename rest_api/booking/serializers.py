@@ -11,7 +11,7 @@ class MeetingRoomSerializer(serializers.ModelSerializer):
 
 
 class BookingHistorySerializer(serializers.ModelSerializer):
-    meeting_room = MeetingRoomSerializer()
+    meeting_room = MeetingRoomSerializer(read_only=True)
     class Meta:
         model = BookingHistory
         fields = ['id', 'meeting_room', 'start_time', 'end_time']

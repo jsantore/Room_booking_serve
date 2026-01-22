@@ -9,7 +9,7 @@ The Meeting Room Booking System that allows users to book meeting rooms, view av
 - Endpoint: `api/v1/member/login/`
 - Method: POST
 - Members can log in using their email and password. (send json with keys "email" and "password")
-- Self-registration is    not permitted; members are created exclusively through Django admin, and only they can access the login functionality.
+- Self-registration is not permitted; members are created exclusively through Django admin, and only they can access the login functionality.
 
 ### 2. List Available Meeting Rooms
 - Endpoint: `/api/v1/meeting-rooms/available/`
@@ -18,7 +18,7 @@ The Meeting Room Booking System that allows users to book meeting rooms, view av
 - Lists all available meeting rooms based on the specified time range.
 
 ### 3. Book a Meeting Room
-- Endpoint: `/api/v1/meeting-rooms/book/<int:room_id>/`
+- Endpoint: `/api/v1/meeting-rooms/<int:room_id>/book/`
 - Method: POST
 - login required
 - Parameters:
@@ -64,8 +64,8 @@ The Meeting Room Booking System that allows users to book meeting rooms, view av
    source venv/bin/activate
    pip install -r requirements.txt
    python manage.py migrate
-   python manage.py createsuperuser
    python manage.py loaddata fixtures/data.json
+   python manage.py createsuperuser
    ```
 - Note - 
   need to create a user in django-admin to use the booking system
