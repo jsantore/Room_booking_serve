@@ -9,12 +9,18 @@ The Meeting Room Booking System that allows users to book meeting rooms, view av
 - Endpoint: `api/v1/member/login/`
 - Method: POST
 - Members can log in using their email and password. (send json with keys "email" and "password")
+- returns a JWT token object with access and refresh if login is successful.
 - Self-registration is not permitted; members are created exclusively through Django admin, and only they can access the login functionality.
+- 
+
 
 ### 2. List Available Meeting Rooms
 - Endpoint: `/api/v1/meeting-rooms/available/`
 - Method: GET
 - login required
+- Parameters sent in json (both optional):
+  - `start_time` (str in iso 8601 format https://en.wikipedia.org/wiki/ISO_8601):
+  - `end_time` (str also 860 format):
 - Lists all available meeting rooms based on the specified time range.
 
 ### 3. Book a Meeting Room
@@ -34,7 +40,7 @@ The Meeting Room Booking System that allows users to book meeting rooms, view av
 - Lists all booked meeting rooms history for a requested user.
 
 ### 5. Cancel Meeting Room Booking
-- Endpoint: `/api/v1/meeting-rooms/cancel/<int:booking_id>/`
+- Endpoint: `api/v1/meeting-rooms/<int:booking_id>/cancel-booking/`
 - Method: DELETE
 - login required
 - Cancels a previously booked meeting room.
