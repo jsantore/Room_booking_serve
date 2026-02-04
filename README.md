@@ -21,15 +21,15 @@ The Meeting Room Booking System that allows users to book meeting rooms, view av
 - Parameters sent in json (both optional):
   - `start_time` (str in iso 8601 format https://en.wikipedia.org/wiki/ISO_8601):
   - `end_time` (str also 860 format):
-- Lists all available meeting rooms based on the specified time range.
+- Lists all [available] meeting rooms based on the specified time range. (my testing indicates that it will list all rooms even if already booked as of Feb 4)
 
 ### 3. Book a Meeting Room
 - Endpoint: `/api/v1/meeting-rooms/<int:room_id>/book/`
 - Method: POST
 - login required
 - Parameters:
-  - `start_time` (str): Start time of the booking.
-  - `end_time` (str): End time of the booking.
+  - `start_time` (str): Start time of the booking. Time should be in python strftime format. (eg "2026-02-05 11:00 AM")
+  - `end_time` (str): End time of the booking. (time in same format as above)
   - `no_of_persons` (int, optional): Number of persons for the booking (default is 1).
 - Books a meeting room for the specified time range.
 - After Booking mail will send to the one who booked
