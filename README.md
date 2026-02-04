@@ -19,8 +19,8 @@ The Meeting Room Booking System that allows users to book meeting rooms, view av
 - Method: GET
 - login required
 - Parameters sent in json (both optional):
-  - `start_time` (str in iso 8601 format https://en.wikipedia.org/wiki/ISO_8601):
-  - `end_time` (str also 860 format):
+  - `start_time` (str in strftime format):
+  - `end_time` (str strftime format):
 - Lists all [available] meeting rooms based on the specified time range. (my testing indicates that it will list all rooms even if already booked as of Feb 4)
 
 ### 3. Book a Meeting Room
